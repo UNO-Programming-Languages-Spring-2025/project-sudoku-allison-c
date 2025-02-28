@@ -10,6 +10,9 @@ value(1..4).
 row(1..4).
 column(1..4).
 
+% define subgrids
+subgrid(R,C,S) :- row(R), column(C), S = 1+(((R-1)/2)*2+((C-1)/2)).
+
 % the cell [R,C] contains number N, each cell has one number
 1{sudoku(R,C,N):value(N)}1 :- row(R), column(C).
 
@@ -19,5 +22,6 @@ sudoku(R,C,N) :- initial(R,C,N).
 % constraints
 :- sudoku(R,C,N), sudoku(A,C,N), R!=A. % each number in a row is unique
 :- sudoku(R,C,N), sudoku(R,B,N), C!=B. % each number in a column is unique
+:- sudoku(R,C,N), sudoku(A,B,N), subgrid(R,C,S), subgrid(A,B,S), (R,C)!=(A,B). % each number in a subgrid is unique
 
 #show sudoku/3.
