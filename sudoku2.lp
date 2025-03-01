@@ -6,12 +6,12 @@
 
 % Your implementation please...
 
-value(1..4).
-row(1..4).
-column(1..4).
+value(1..9).
+row(1..9).
+column(1..9).
 
 % define subgrids
-subgrids(R,C,S) :- row(R), column(C), S = 1+(((R-1)/2)*2+((C-1)/2)).
+subgrids(R,C,S) :- row(R), column(C), S = 1+(((R-1)/3)*3+((C-1)/3)).
 
 % subgrid 1
 subgrid(1,1,1). subgrid(1,2,1). subgrid(2,1,1). subgrid(2,2,1).
